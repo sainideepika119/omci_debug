@@ -195,26 +195,37 @@ void print_msg(vector<string> v)
 
 int main(int argc, char** argv)
 {
-	if( argc < 3 )
+	bool ONT_BROADCOM = false;
+	bool ONT_REALTEK = false;
+	bool OLT_BROADCOM = false;
+	string arg = argv[1];
+
+	if(arg == "ont_broadcom")
+		ONT_BROADCOM = true;
+	else if (arg == "ont_realtek")
+		ONT_REALTEK = true;
+	else if(arg == "olt_broadcom")
+		OLT_BROADCOM = true;
+
+	if( argc == 2 )
 	{
 		cout << "No input file was passed. Usage: omci.msg"<<endl;
 		cout << "No output file is passed. Usage: output.txt"<<endl;
 		input_file_name = "omci.msg";
 		output_file_name = "output.txt";
-
 	}
-	else if(argc < 2)
+	else if(argc == 3)
 	{
-		cout << "Input Usage: "<<argv[1]<<endl;
+		cout << "Input Usage: "<<argv[2]<<endl;
 		cout << "No output file is passed. Usage: output.txt"<<endl;
-		input_file_name = argv[1];
+		input_file_name = argv[2];
 		output_file_name = "output.txt";
 	}
 	else{
-		cout << "Input Usage: "<<argv[1]<<endl;
-		cout << "Output Usage: "<<argv[2]<<endl;
-		input_file_name = argv[1];
-		output_file_name = argv[2];
+		cout << "Input Usage: "<<argv[2]<<endl;
+		cout << "Output Usage: "<<argv[3]<<endl;
+		input_file_name = argv[2];
+		output_file_name = argv[3];
 	}
 
 	ifstream fin;
@@ -222,6 +233,8 @@ int main(int argc, char** argv)
 	fin.open(input_file_name);
 	string line;
 	vector<string> v;
+	string output =   "";
+
 
 	while (fin)
 	{
@@ -230,11 +243,48 @@ int main(int argc, char** argv)
 		ss.str(line);
 		string segment;
 
-		while(std::getline(ss, segment, ':'));
+//REALTEK_ONT
+if(ONT_REALTEK == true)
+{
+		output = "";
+		while(std::getline(ss, segment, '\n'));
 
-		if(segment.size()==96)
-			v.push_back(segment);
-	}
+		cout<<segment<<endl;
+		for (char ch : segment) {
+            if (ch != ' ' && ch != '\t') {  // remove spaces and tabs
+                output += ch;
+            }
+        }
+        // cout<<output.size()<<endl;
+        if(output.size()==97)
+        	v.push_back(output);
+}
+//REALTEK_ONT
+
+
+//BROADCOM_ONT		
+if(ONT_BROADCOM == true)
+{
+
+		// while(std::getline(ss, segment, ':'));
+
+		// if(segment.size()==96)
+		// 	v.push_back(segment);
+}
+//BROADCOM_ONT
+
+// BROADCOM_OLT
+if(OLT_BROADCOM == true)
+{
+
+        // while(std::getline(ss, segment, '='));
+        
+		// if(segment.size()==98)
+		// 	v.push_back(segment.substr(0,96));
+}
+// BROADCOM_OLT
+
+	}	
 
 	fin.close();
 
