@@ -7,7 +7,7 @@ This is a reference file for using helper application
 ./helper <ont_realtek/ont_broadcom/olt_broadcom> <input file> <output file>
 
 
-If <input file> is not provided it will take omci.msg as default file and if <output file> is not procided it will take output.txt as defalult.
+If <input file> is not provided it will take omci.msg as default file and if <output file> is not provided it will take output.txt as defalult.
 
 _____How to Compile_____
 
