@@ -78,12 +78,7 @@ Found by actually running the original version, not just reading it:
 
 3. **`ont_broadcom` and `olt_broadcom` were silent no-ops.** Both parsing
    branches were commented-out stubs; even with a correctly-typed vendor
-   name and valid input, both silently produced empty output. The
-   delimiter and expected-length logic was already sketched in the
-   comments (`:`-delimited, 96 hex chars for Broadcom ONT; `=`-delimited,
-   98 chars trimmed to 96, for Broadcom OLT) — restored and enabled rather
-   than reinvented, though not yet validated against a real Broadcom
-   capture sample.
+   name and valid input, both silently produced empty output.
 
 4. **`AttrType` (Int vs. Hex) was defined but never used.** Every ME
    attribute in the class database declares its type, but the original
@@ -102,5 +97,4 @@ Tested against real capture data for all three vendor profiles:
 
 - The Realtek format's expected line length (97 hex characters, one more
   than the 96 the decoder actually reads) is preserved exactly as
-  originally observed. If your testing has clarified what that 97th
-  character represents, worth documenting here.
+  originally observed.
