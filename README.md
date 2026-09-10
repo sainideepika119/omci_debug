@@ -56,8 +56,7 @@ The binary (`helper`) will be in `build/`.
   `OmciMessage` centralizes the nibble-offset arithmetic (transaction ID,
   message type, ME class/instance, attribute mask, content) that a packed
   C struct + `ntohs`/`ntohl` would handle for a true binary buffer; the
-  same underlying wire-format-parsing discipline documented for this
-  project's production OMCI code, adapted to a hex-text log input.
+  same wire-format-parsing approach I use in production OMCI work.
 
 ## Real bugs found and fixed
 
