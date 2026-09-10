@@ -1,0 +1,11 @@
+# Build output
+build/
+helper
+
+# Generated output (not source)
+output.txt
+
+# Editor/OS cruft
+.vscode/
+*.swp
+.DS_Store
